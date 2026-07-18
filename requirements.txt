@@ -1,4 +1,5 @@
 streamlit
-openai
 pypdf
-python-dotenv
+sentence-transformers
+torchvision
+faiss-cpu
