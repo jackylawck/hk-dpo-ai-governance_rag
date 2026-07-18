@@ -1,0 +1,14 @@
+# 1. 嚴禁上傳版權文件 (Copyright Compliance)
+*.pdf
+
+# 2. 嚴禁上傳內部審計軌跡 (Audit Log Isolation)
+*.log
+
+# 3. 嚴禁上傳 API 金鑰 (Credential Security)
+.env
+
+# 4. 系統與快取檔案
+__pycache__/
+*.pyc
+.streamlit/
+.DS_Store
