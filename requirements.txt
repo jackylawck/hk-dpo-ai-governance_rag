@@ -1,6 +1,7 @@
 streamlit
-langchain
-langchain-community
+langchain>=0.1.10
+langchain-community>=0.0.30
+langchain-core>=0.1.40
 langchain-openai
 faiss-cpu
 pypdf
