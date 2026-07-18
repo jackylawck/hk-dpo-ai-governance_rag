@@ -1,7 +1,10 @@
 # HK DPO AI Governance RAG Advisor (香港數字辦指引 RAG 智能顧問)
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge.svg)](https://hk-dpo-ai-governance-rag.streamlit.app/)
+👉 **[點此直接進入線上智能顧問工作站 (Live App Link)](https://hk-dpo-ai-governance-rag.streamlit.app/)**
+
 An advanced enterprise-grade regulatory consultation workstation powered by a zero-dependency, local Retrieval-Augmented Generation (RAG) engine. It performs instant semantic search and regulatory alignment strictly based on the HK DPO "Generative AI Technical and Application Guideline V1.1" (Dec 2025).
-本系統為一套 100% 純地端運算、零外部框架依賴的企業級 AI 法規諮詢工作站。使用者可直接於前端一鍵上傳指引文件，系統將即時在內存中進行加密向量化，針對香港數字政策辦公室《香港生成式人工智能技術及應用指引》V1.1 進行精準之語義檢索與法規對齊。
+本系統為一套 100% 純地端運算、零外部框架依賴的企業級 AI 法規諮詢工作站。使用者可透過上方連結直達線上系統並一鍵上傳指引文件，系統將即時在內存中進行加密向量化，針對香港數字政策辦公室《香港生成式人工智能技術及應用指引》V1.1 進行精準之語義檢索與法規對齊。
 
 ---
 
