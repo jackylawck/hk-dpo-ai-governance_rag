@@ -5,15 +5,16 @@ import logging
 from datetime import datetime
 from dotenv import load_dotenv
 
-# RAG 與 LLM 必備組件
+# ==========================================
+# 經典且絕對穩定的 RAG 與 LLM 組件
+# ==========================================
 from pypdf import PdfReader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_openai import ChatOpenAI
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import ChatPromptTemplate
+from langchain.chains import RetrievalQA
+from langchain.prompts import PromptTemplate
 
 load_dotenv()
 
@@ -69,7 +70,6 @@ def process_pdf_to_chunks(pdf_path):
             text = page.extract_text()
             if not text: continue
             
-            # 針對 DPO 較長的政策段落，稍微加大切片長度
             chunk_size = 600
             overlap = 150
             start = 0
@@ -117,26 +117,39 @@ def generate_and_log_audit_trail(query, response_text):
     return f"<div class='audit-trail'>🔒 ISO 42001 Cryptographic Audit ID: {audit_hash} | Timestamp: {timestamp} (Log secured to local ledger)</div>"
 
 # ==========================================
-# 4. LLM 防禦性系統提示詞與工作管線
+# 4. LLM 防禦性系統提示詞與經典 QA 工作管線
 # ==========================================
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-system_prompt = (
-    "You are an expert AI Governance Auditor.\n"
-    "Your core task is to answer corporate compliance queries based strictly on the retrieved context from the HK DPO Guideline.\n\n"
-    "🚨 BOUNDARY RULES:\n"
-    "1. If the user asks about traditional machine learning (e.g., Random Forest, regression) that DOES NOT generate content, state it is OUT OF SCOPE.\n"
-    "2. If the user asks about non-HK frameworks (e.g., EU AI Act, GDPR), refuse to answer to prevent compliance illusions.\n"
-    "3. ALWAYS base your advice on the retrieved context. Do not invent rules.\n"
-    "4. Reply in the user's language (Traditional Chinese or English) with a professional corporate tone.\n\n"
-    "CONTEXT:\n{context}"
-)
+system_prompt = """You are an expert AI Governance Auditor.
+Your core task is to answer corporate compliance queries based strictly on the retrieved context from the HK DPO Guideline.
 
-if openai_api_key:
-    prompt_template = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+🚨 BOUNDARY RULES:
+1. If the user asks about traditional machine learning (e.g., Random Forest, regression) that DOES NOT generate content, state it is OUT OF SCOPE.
+2. If the user asks about non-HK frameworks (e.g., EU AI Act, GDPR), refuse to answer to prevent compliance illusions.
+3. ALWAYS base your advice on the retrieved context. Do not invent rules.
+4. Reply in the user's language (Traditional Chinese or English) with a professional corporate tone.
+
+CONTEXT:
+{context}
+
+USER QUERY:
+{question}"""
+
+if openai_api_key and RETRIEVER:
+    prompt_template = PromptTemplate(template=system_prompt, input_variables=["context", "question"])
     llm = ChatOpenAI(model="gpt-4o", temperature=0.0)
-    question_answer_chain = create_stuff_documents_chain(llm, prompt_template)
-    rag_chain = create_retrieval_chain(RETRIEVER, question_answer_chain) if RETRIEVER else None
+    
+    # 使用最穩定、相容所有版本的 RetrievalQA
+    rag_chain = RetrievalQA.from_chain_type(
+        llm=llm,
+        chain_type="stuff",
+        retriever=RETRIEVER,
+        return_source_documents=True,
+        chain_type_kwargs={"prompt": prompt_template}
+    )
+else:
+    rag_chain = None
 
 # ==========================================
 # 5. 主畫面佈局渲染
@@ -166,10 +179,10 @@ else:
 
         with st.chat_message("assistant"):
             with st.spinner("🔍 正在語義檢索本地向量庫並比對官方文本中..."):
-                # 執行 LangChain RAG 推理
-                response = rag_chain.invoke({"input": prompt})
-                answer = response["answer"]
-                source_documents = response["context"]
+                # 執行經典 RAG 推理
+                response = rag_chain.invoke({"query": prompt})
+                answer = response["result"]
+                source_documents = response["source_documents"]
                 
                 # 渲染來源追溯 ( Traceability )
                 citations_html = ""
@@ -192,5 +205,5 @@ else:
                 st.markdown(audit_html, unsafe_allow_html=True)
                 
                 # 儲存對話歷史
-                full_response = answer + citations_html + audit_html
+                full_response = answer + "\n\n" + citations_html + audit_html
                 st.session_state.messages.append({"role": "assistant", "content": full_response})
