@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Author & Credit Code-Level Annotation for SEO (羅子淇 Jacky Law) -->
+    <!-- Author: 羅子淇 Jacky Law | Personal Site: https://jackylawck.github.io/jackylawck/ -->
+    
+    <!-- Google Search Console 驗證標籤 -->
+    <meta name="google-site-verification" content="JZ5UohX-CcP_fQV0_DI9VadkKY4ZoTTkUifL88-fIcY" />
+    
+    <!-- 精準 SEO 設定 (Google 搜尋結果格式優化) -->
+    <title>HK DPO AI Governance RAG Advisor | 純地端 RAG 智能顧問工作站</title>
+    <meta name="description" content="香港企業級 AI 法規諮詢工作站 — 100% 純地端內存運算，零外部 API 依賴。對齊香港數字政策辦公室 (DPO)《生成式人工智能技術及應用指引》V1.1 與 ISO 42001。具備資料不落地、隱私護欄與密碼學審計軌跡。Enterprise Privacy-Preserving AI Governance RAG Engine.">
+    <meta name="keywords" content="HK DPO V1.1, 香港數字政策辦公室, 生成式人工智能指引, ISO 42001, RAG, AI Governance, AI管治, 地端檢索, Privacy-by-Design, Zero Data Retention, 羅子淇, Jacky Law">
+    <meta name="author" content="Jacky Law 羅子淇 (https://jackylawck.github.io/jackylawck/)">
+    <link rel="author" href="https://jackylawck.github.io/jackylawck/" />
+    <link rel="me" href="https://jackylawck.github.io/jackylawck/" />
+
+    <!-- Open Graph 社群與多語言標籤 -->
+    <meta property="og:title" content="HK DPO AI Governance RAG Advisor | 純地端 RAG 智能顧問工作站">
+    <meta property="og:description" content="香港企業級 AI 法規諮詢工作站 — 具備 100% 地端內存運算、資料不落地與 ISO 42001 密碼學審計軌跡。Enterprise Privacy-Preserving RAG Engine.">
+    <meta property="og:url" content="https://jackylawck.github.io/hk-dpo-ai-governance_rag/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_HK">
+    <meta property="og:locale:alternate" content="en_US">
+    <link rel="canonical" href="https://hk-dpo-ai-governance-rag.streamlit.app/" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#10b981',
+                            600: '#059669',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-600 selection:text-white">
+
+    <!-- 導覽列 Navigation -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="font-bold text-lg tracking-tight text-white flex items-center gap-2">
+                <span>🏛️ HK DPO RAG Advisor</span>
+                <span class="text-xs text-emerald-400 font-normal border border-emerald-800/60 bg-emerald-950/40 px-2 py-0.5 rounded">v1.1 ISO-Ready</span>
+            </div>
+            <div class="flex items-center space-x-6 text-sm font-medium text-slate-400">
+                <a href="#features" class="hover:text-emerald-400 transition-colors">Features / 核心特色</a>
+                <a href="#security" class="hover:text-emerald-400 transition-colors">Governance / 資安管治</a>
+                <a href="https://github.com/jackylawck/hk-dpo-ai-governance_rag" target="_blank" class="hover:text-white transition-colors">GitHub Repo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 區域 -->
+    <header class="py-20 px-6 max-w-6xl mx-auto text-center sm:text-left">
+        <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-6">
+                <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Enterprise Local RAG Consultation Engine | 香港 AI 法規諮詢與地端檢索工作站
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                HK DPO AI Governance RAG Advisor<br>
+                <span class="text-emerald-400 text-3xl sm:text-4xl">純地端 RAG 智能法規顧問</span>
+            </h1>
+            
+            <div class="space-y-3 text-slate-300 leading-relaxed mb-8">
+                <p class="text-base sm:text-lg">
+                    企業級香港數字政策辦公室《生成式人工智能技術及應用指引》V1.1 諮詢工作站 — 採用 100% 本地內存向量檢索 (In-Memory RAG)，零外部 API 依賴，為 HR、法務及 DPO 團隊提供即時、精準且資料不落地的法規對齊服務。
+                </p>
+                <p class="text-sm sm:text-base text-slate-400 italic">
+                    Enterprise local consultation workstation implementing HK DPO V1.1 Guideline and ISO 42001 standards. Features local embeddings, zero third-party API dependency, and cryptographic audit hashing.
+                </p>
+            </div>
+            
+            <!-- 行動按鈕 -->
+            <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+                <a href="https://hk-dpo-ai-governance-rag.streamlit.app" target="_blank" rel="noopener" class="px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2">
+                    🚀 即刻體驗 Web App / Launch Advisor
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+                <a href="https://github.com/jackylawck/hk-dpo-ai-governance_rag" target="_blank" rel="noopener" class="px-6 py-4 rounded-xl border border-slate-700 hover:bg-slate-800 text-slate-300 font-medium transition-all">
+                    GitHub Source Code
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- GitHub Topics 標籤牆 -->
+    <section class="py-6 border-y border-slate-900 bg-slate-900/30">
+        <div class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <span class="text-xs text-slate-400 font-semibold mr-2">Topics & Compliance Frameworks:</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">ai-governance</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">iso-42001</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">privacy-by-design</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">zero-data-retention</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">local-rag</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">hk-dpo-v1.1</span>
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">semantic-search</span>
+        </div>
+    </section>
+
+    <!-- 核心特色 Section -->
+    <section id="features" class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-8">Key Capabilities / 核心特色</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-3">
+                <div class="text-3xl">⚡</div>
+                <h3 class="text-lg font-bold text-white">純地端向量化引擎<br><span class="text-xs text-emerald-400 font-normal">Zero Third-Party API Call</span></h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    採用開源 sentence-transformers 與 FAISS 進行本地內存運算，完全不調用第三方 LLM 或雲端向量庫 API，徹底防範機密文件外洩風險。<br>
+                    <span class="text-xs text-slate-500 block mt-1">100% local vector embedding execution, preventing confidential document data leakage to external APIs.</span>
+                </p>
+            </div>
+            <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-3">
+                <div class="text-3xl">🧩</div>
+                <h3 class="text-lg font-bold text-white">精準語義切片與防幻覺<br><span class="text-xs text-emerald-400 font-normal">Context-Grounded Retrieval</span></h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    設定 300-400 字黃金切片與重疊緩衝區，繞過生成式模型的隨機創作層，實現「所上傳即所查詢」的硬化法規檢索。<br>
+                    <span class="text-xs text-slate-500 block mt-1">Optimized chunking guarantees complete semantic context retrieval without generative AI hallucinations.</span>
+                </p>
+            </div>
+            <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-3">
+                <div class="text-3xl">🔒</div>
+                <h3 class="text-lg font-bold text-white">密碼學審計軌跡紀錄<br><span class="text-xs text-emerald-400 font-normal">Cryptographic SHA-256 Audit Trail</span></h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    每個被檢索的法規文本切片自動生成 SHA-256 哈希值，為內部合規審計與 ISO 42001 驗證提供不可篡改的證據鏈。<br>
+                    <span class="text-xs text-slate-500 block mt-1">Generates unique SHA-256 audit hashes for every retrieved regulatory chunk, ensuring full auditability.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 資安與隱私合規 Section -->
+    <section id="security" class="py-16 px-6 max-w-6xl mx-auto border-t border-slate-900">
+        <div class="rounded-3xl border border-emerald-900/40 bg-gradient-to-b from-emerald-950/20 to-slate-900/40 p-8 sm:p-12">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span>🛡️</span> ISO 42001 & Privacy-by-Design 治理架構
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8 text-sm text-slate-300">
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-emerald-400 text-base">🔒 資料不落地 (Zero Data at Rest)</h4>
+                    <p class="leading-relaxed text-slate-400">
+                        採用 Session RAM 內存沙盒機制。用戶上傳之 PDF 文件與生成的向量索引僅存於單次會話中，瀏覽器關閉即刻徹底銷毀。<br>
+                        <span class="text-xs text-slate-500 block mt-1">Ephemeral memory execution. Uploaded PDFs and vector indices exist only in volatile RAM and are wiped upon session end.</span>
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-emerald-400 text-base">🔒 版權保護與合規分發 (Copyright Safeguards)</h4>
+                    <p class="leading-relaxed text-slate-400">
+                        本倉庫絕對不預存或散布數字辦官方指引原文，使用者經合法途徑下載後於在地端進行載入，完全符合版權與管治規範。<br>
+                        <span class="text-xs text-slate-500 block mt-1">Does not redistribute official PDFs. End-users upload official documents locally, strictly adhering to IP and copyright laws.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code-level credit for SEO crawlers: Developed by Jacky Law 羅子淇 (https://jackylawck.github.io/jackylawck/) -->
+    <footer class="border-t border-slate-900 py-8 px-6 text-center text-xs text-slate-600">
+        <p>© 2026 HK DPO AI Governance RAG Advisor. Released under Creative Commons CC BY 4.0 / Open Source Governance Protocol.</p>
+        <p class="mt-2 text-[10px] text-slate-700">
+            <a href="https://jackylawck.github.io/jackylawck/" target="_blank" class="hover:underline">Jacky Law 羅子淇</a>
+        </p>
+    </footer>
+
+</body>
+</html>
